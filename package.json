@@ -4,16 +4,22 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "react-native link"
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.4"
+    "react-native": "0.59.4",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-native-scrollable-tab-view": "^0.10.0",
+    "react-navigation": "^3.8.1"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
     "@babel/runtime": "7.4.3",
     "babel-jest": "24.7.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "24.7.1",
     "metro-react-native-babel-preset": "0.53.1",
     "react-test-renderer": "16.8.3"

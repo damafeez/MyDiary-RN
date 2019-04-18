@@ -1,5 +1,5 @@
 
-import {StyleSheet, Dimensions} from 'react-native'
+import {Dimensions} from 'react-native'
 
 export const dimensions = {
   fullHeight: Dimensions.get('window').height,
@@ -18,11 +18,41 @@ export const padding = {
   sm: 10,
   md: 25,
   lg: 35,
-  xl: 40
+  xl: 60
 }
 
 export const fonts = {
   sm: 12,
   md: 18,
   lg: 28,
+}
+
+export const reusable = {
+  button: {
+    width: 300,
+    height: 47,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 60,
+    backgroundColor: colors.primary,
+    shadowOffset: { width: 10, height: 10 },
+    shadowColor: '#50555ac2',
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
+    elevation: 3,
+    marginVertical: 10
+  },
+  headerText: {
+    fontSize: 23,
+    fontWeight: '500',
+    color: colors.headerText,
+    marginVertical: 30,
+    alignSelf: 'flex-start'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    alignItems: 'center',
+    padding: padding.md,
+  },
 }

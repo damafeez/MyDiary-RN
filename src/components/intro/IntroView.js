@@ -5,12 +5,12 @@ import {
   Image,
   StyleSheet
 } from "react-native";
-import {colors, padding} from '../../styles/base';
+import {colors, padding, dimensions} from '../../styles/base';
 
 class IntroSplash extends Component {
   render() {
     return (
-      <View style={{alignItems: "center", padding: padding.md}}>
+      <View style={{alignItems: "center", paddingHorizontal: padding.md, paddingVertical: dimensions.fullHeight < 812 ? padding.sm : padding.md}}>
         <View style={styles.introImage}>
           <Image style={{
             width: '100%',

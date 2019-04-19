@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
 import Scroller from 'react-native-scrollable-tab-view'
 import IntroSplash from './IntroView';
 import {padding} from '../../styles/base';
@@ -26,7 +25,7 @@ export default class IntroScroller extends React.Component {
         <IntroSplash
               image={require('../../assets/intro3.jpeg')}
               title="We care about your moods"
-              description="Diary allows you to pen down customize stories that match your mood. It yours for the yours for the interest." />
+              description="Diary allows you to pen down stories that match your moods and emotions. It yours for the yours for the interest." />
       </Scroller>
     );
   }

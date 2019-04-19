@@ -46,13 +46,17 @@ export const reusable = {
     fontSize: 23,
     fontWeight: '500',
     color: colors.headerText,
-    marginVertical: 30,
+    marginTop: 10,
+    marginBottom: 30,
     alignSelf: 'flex-start'
   },
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    alignItems: 'center',
     padding: padding.md,
+  },
+  innerContainer: {
+    flex: 1,
+    alignItems: 'center',
   },
 }

@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { 
   View,
-  Text,
   StyleSheet
 } from "react-native";
-import {colors, dimensions} from '../../styles/base';
+import {colors, dimensions, padding} from '../../styles/base';
 
 class IntroSlideIndicator extends Component {
   render() {
     return (
-      <View style={[this.props.style, {flexDirection: 'row', justifyContent: 'center', marginBottom: dimensions.fullHeight < 812 ? 10 : 50}]}>
+      <View style={[this.props.style, {flexDirection: 'row', justifyContent: 'center', marginBottom: dimensions.fullHeight < 812 ? padding.md : padding.xl}]}>
         {[0, 1, 2].map(position => <View key={position} style={[styles.scrollIndicator, this.props.activeTab === position ? styles.scrollIndicatorActive : {}]}></View>)}
       </View>
     );

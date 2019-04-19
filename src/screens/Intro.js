@@ -9,6 +9,9 @@ import {colors, reusable} from '../styles/base';
 import IntroScroll from '../components/intro/Scroller';
 
 class Intro extends Component {
+  static navigationOptions = {
+    header: null
+  };
   render() {
     return (
       <View style={reusable.container}>

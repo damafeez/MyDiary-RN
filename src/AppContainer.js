@@ -1,9 +1,11 @@
+import React from 'react';
 import {createStackNavigator, createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {CheckAuth} from './helpers';
 import Intro from './screens/Intro';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import Header from './components/Header';
 
 const AppStack = createStackNavigator({Home},
   {
@@ -14,9 +16,10 @@ const AppStack = createStackNavigator({Home},
 const AuthStack = createStackNavigator({Intro, SignUp, Login},
   {
     initialRouteName: 'Intro',
-    defaultNavigationOptions: {
-      header: null
-    },
+    headerMode: 'screen',
+    defaultNavigationOptions: ({navigation}) => ({
+      header: <Header navigation={navigation} />,
+    })
   })
 
 export default createAppContainer(createSwitchNavigator(

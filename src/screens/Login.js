@@ -12,7 +12,7 @@ import InputText from '../components/InputText';
 class SignUp extends Component {
   render() {
     return (
-      <View style={reusable.container}>
+      <View style={[reusable.container, {paddingTop: 0}]}>
         <Text style={reusable.headerText}>Welcome back, Boo Boo!</Text>
         <View style={{marginVertical: padding.xl, width: '100%'}}>
           <InputText placeholder="Username" />

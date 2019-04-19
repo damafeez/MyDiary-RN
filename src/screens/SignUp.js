@@ -16,8 +16,7 @@ class SignUp extends Component {
   }
   render() {
     return (
-      <View style={reusable.container}>
-        <StatusBar backgroundColor="blue" barStyle="light-content" />
+      <View style={[reusable.container, {paddingTop: 0}]}>
         <Text style={reusable.headerText}>Glad to see you Awesome!</Text>
         <View style={{marginVertical: padding.md, width: '100%'}}>
           <InputText placeholder="Full Name" />

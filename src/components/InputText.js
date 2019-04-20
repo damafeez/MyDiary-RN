@@ -22,11 +22,15 @@ class InputText extends Component {
         <TextInput
           onFocus={() => this.setState({focused: true})}
           onBlur={() => this.setState({focused: false})}
-          onKeyPress={this.props.handleKeyPress}
+          onChangeText={value => this.props.handleTextChange(this.props.name, value)}
           value={this.props.value}
-          style={{fontSize: 17,
-            paddingVertical: 10, fontWeight: active ? '500' : '400', letterSpacing: 3}}
-            placeholderTextColor={active ? colors.primary : colors.secondary}
+          style={{
+            fontSize: 17,
+            paddingVertical: 8,
+            fontWeight: active && this.props.value ? '600' : '400',
+            color: colors.primary,
+          }}
+          placeholderTextColor={colors.secondary}
           placeholder={this.props.placeholder} />
       </View>
     );

@@ -12,20 +12,29 @@ import InputText from '../components/InputText';
 
 class SignUp extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      username: '',
+      fullName: '',
+      email: '',
+      password: '',
+    }
+    this.handleTextChange = this.handleTextChange.bind(this);
+  }
+  handleTextChange(key, value) {
+    this.setState({[key]: value});
   }
   render() {
     return (
       <View style={reusable.container}>
         <SafeAreaView style={{flex: 1}}>
           <View style={reusable.innerContainer}>
-
             <Text style={reusable.headerText}>Glad to see you Awesome!</Text>
             <View style={{marginVertical: padding.md, width: '100%'}}>
-              <InputText placeholder="Full Name" />
-              <InputText placeholder="Username" />
-              <InputText placeholder="Email" />
-              <InputText placeholder="Password" />
+              <InputText name='fullName' handleTextChange={this.handleTextChange} value={this.state.fullName} placeholder="Full Name" />
+              <InputText handleTextChange={this.handleTextChange} name='username' value={this.state.username} placeholder="Username" />
+              <InputText handleTextChange={this.handleTextChange}  name='email' value={this.state.email} placeholder="Email" />
+              <InputText handleTextChange={this.handleTextChange}  name='password' value={this.state.password} placeholder="Password" />
             </View>
             <KeyboardAvoidingView>
               <TouchableOpacity activeOpacity={0.8} style={[reusable.button, {marginVertical: padding.lg}]}>

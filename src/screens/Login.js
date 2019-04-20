@@ -11,6 +11,17 @@ import { reusable, padding, colors } from "../styles/base";
 import InputText from '../components/InputText';
 
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    }
+    this.handleTextChange = this.handleTextChange.bind(this);
+  }
+  handleTextChange(key, value) {
+    this.setState({[key]: value});
+  }
   render() {
     return (
       <View style={reusable.container}>
@@ -18,8 +29,8 @@ class SignUp extends Component {
           <View style={reusable.innerContainer}>
             <Text style={reusable.headerText}>Welcome back, Boo Boo!</Text>
             <View style={{marginVertical: padding.xl, width: '100%'}}>
-              <InputText placeholder="Username" />
-              <InputText placeholder="Password" />
+              <InputText name="username" value={this.state.username} handleTextChange={this.handleTextChange} placeholder="Username" />
+              <InputText name="password" value={this.state.password} handleTextChange={this.handleTextChange} placeholder="Password" />
             </View>
             <KeyboardAvoidingView behavior="position">
               <TouchableOpacity activeOpacity={0.8} style={[reusable.button, {marginVertical: padding.lg}]}>

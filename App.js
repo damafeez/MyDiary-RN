@@ -9,7 +9,7 @@ export default class App extends Component {
         <StatusBar
           barStyle="dark-content"
         />
-        <AppContainer />
+        <AppContainer persistenceKey={"NavigationState"} />
       </View>
     );
   }

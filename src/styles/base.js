@@ -43,8 +43,8 @@ export const reusable = {
     marginVertical: 10
   },
   headerText: {
-    fontSize: 23,
-    fontWeight: '500',
+    fontSize: 25,
+    fontWeight: 'bold',
     color: colors.headerText,
     marginTop: 10,
     marginBottom: 30,

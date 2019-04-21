@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   SafeAreaView,
+  ScrollView
 } from "react-native";
 import { reusable, padding, colors } from "../styles/base";
 import InputText from '../components/InputText';
@@ -25,12 +26,16 @@ class SignUp extends Component {
   render() {
     return (
       <View style={reusable.container}>
-        <SafeAreaView style={{flex: 1}}>
-          <View style={reusable.innerContainer}>
+        <ScrollView
+          contentContainerStyle={{padding: padding.md}}
+          keyboardShouldPersistTaps='handled'>
+          <SafeAreaView style={{flex: 1}}>
+            <View
+              style={reusable.innerContainer}>
             <Text style={reusable.headerText}>Welcome back, Boo Boo!</Text>
             <View style={{marginVertical: padding.xl, width: '100%'}}>
-              <InputText name="username" value={this.state.username} handleTextChange={this.handleTextChange} placeholder="Username" />
-              <InputText name="password" value={this.state.password} handleTextChange={this.handleTextChange} placeholder="Password" />
+              <InputText autoCapitalize="none" textContentType="username" name="username" value={this.state.username} handleTextChange={this.handleTextChange} placeholder="Username" />
+              <InputText textContentType="password" secureTextEntry name="password" value={this.state.password} handleTextChange={this.handleTextChange} placeholder="Password" />
             </View>
             <KeyboardAvoidingView behavior="position">
               <TouchableOpacity activeOpacity={0.8} style={[reusable.button, {marginVertical: padding.lg}]}>
@@ -45,8 +50,9 @@ class SignUp extends Component {
               <Text style={{color: colors.secondary, fontSize: 15}}>Don't have an account? </Text>
               <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('SignUp')} ><Text style={{color: colors.primary, fontWeight: '600', fontSize: 15, padding: 5}}>Sign Up</Text></TouchableWithoutFeedback>
             </View>
-          </View>
-        </SafeAreaView>
+            </View>
+          </SafeAreaView>
+        </ScrollView>
       </View>
     );
   }

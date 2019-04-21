@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   StyleSheet
 } from "react-native";
-import {colors, reusable} from '../styles/base';
+import {colors, padding, reusable} from '../styles/base';
 import IntroScroll from '../components/intro/Scroller';
 
 class Intro extends Component {
@@ -15,7 +15,7 @@ class Intro extends Component {
   };
   render() {
     return (
-      <View style={reusable.container}>
+      <View style={[reusable.container, {padding: padding.md}]}>
         <SafeAreaView style={{flex: 1}}> 
           <View style={reusable.innerContainer}>
             <IntroScroll />

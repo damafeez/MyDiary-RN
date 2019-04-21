@@ -53,10 +53,9 @@ export const reusable = {
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    padding: padding.md,
   },
   innerContainer: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
   },
 }

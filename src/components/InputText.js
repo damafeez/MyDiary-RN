@@ -27,9 +27,12 @@ class InputText extends Component {
           style={{
             fontSize: 17,
             paddingVertical: 8,
-            fontWeight: active && this.props.value ? '600' : '400',
+            fontWeight: this.props.value ? '600' : '400',
             color: colors.primary,
           }}
+          secureTextEntry={this.props.secureTextEntry}
+          textContentType={this.props.textContentType}
+          autoCapitalize={this.props.autoCapitalize}
           placeholderTextColor={colors.secondary}
           placeholder={this.props.placeholder} />
       </View>

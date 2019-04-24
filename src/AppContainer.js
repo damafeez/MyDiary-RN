@@ -1,6 +1,11 @@
 import React from 'react';
-import {createStackNavigator, createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {CheckAuth} from './helpers';
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from 'react-navigation';
+
+import CheckAuth from './containers/AuthCheck';
 import Intro from './screens/Intro';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
@@ -29,6 +34,6 @@ export default createAppContainer(createSwitchNavigator(
     Auth: AuthStack,
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: 'CheckAuth'
   }
 ));

@@ -42,6 +42,10 @@ export const reusable = {
     elevation: 3,
     marginVertical: 10
   },
+  disabledButton: {
+    shadowColor: 'white',
+    elevation: 0,
+  },
   headerText: {
     fontSize: 25,
     fontWeight: 'bold',

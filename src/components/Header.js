@@ -12,7 +12,8 @@ class Header extends Component {
           style={{flexDirection: 'row', padding: padding.sm, alignItems: "center", alignSelf: 'flex-start'}}
           onPress={() => this.props.navigation.goBack()}
         >
-            <Feather style={{marginRight: 5, fontSize: 20, color: colors.secondary}} name="chevron-left" /><Text style={{color: colors.secondary}}>Back</Text>
+          <Feather style={{marginRight: 5, fontSize: 20, color: colors.secondary}} name="chevron-left" />
+          <Text style={{color: colors.secondary}}>Back</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

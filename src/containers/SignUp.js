@@ -57,10 +57,10 @@ class SignUp extends Component {
               style={reusable.innerContainer}>
               <Text style={reusable.headerText}>Glad to see you Awesome!</Text>
               <View style={{position: 'relative', marginVertical: padding.md, width: '100%'}}>
-                <InputText autoCorrect={false} textContentType="name" name='fullName' handleTextChange={this.handleTextChange} value={fullName} placeholder="Full Name" />
-                <InputText autoCapitalize="none" textContentType="username" handleTextChange={this.handleTextChange} name='username' value={username} placeholder="Username" />
-                <InputText autoCapitalize="none" textContentType="emailAddress" handleTextChange={this.handleTextChange}  name='email' value={email} placeholder="Email" />
-                <InputText textContentType="password" secureTextEntry handleTextChange={this.handleTextChange}  name='password' value={password} placeholder="Password" />
+                <InputText icon="user" autoCorrect={false} textContentType="name" name='fullName' handleTextChange={this.handleTextChange} value={fullName} placeholder="Full Name" />
+                <InputText icon="user-check" autoCapitalize="none" textContentType="username" handleTextChange={this.handleTextChange} name='username' value={username} placeholder="Username" />
+                <InputText icon="at-sign" autoCapitalize="none" textContentType="emailAddress" handleTextChange={this.handleTextChange}  name='email' value={email} placeholder="Email" />
+                <InputText icon="unlock" textContentType="password" secureTextEntry handleTextChange={this.handleTextChange}  name='password' value={password} placeholder="Password" />
                 <View style={{position: 'absolute', bottom: -30, right: 0,}}>
                   {!!error && <Text style={{paddingVertical: 5, color: '#ff5925', fontWeight: '500'}}>{error}</Text>}
                 </View>                

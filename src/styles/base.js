@@ -43,6 +43,7 @@ export const reusable = {
     marginVertical: 10
   },
   disabledButton: {
+    backgroundColor: '#3c4858cc',
     shadowColor: 'white',
     elevation: 0,
   },

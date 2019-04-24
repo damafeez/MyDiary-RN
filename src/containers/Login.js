@@ -54,8 +54,8 @@ class Login extends Component {
               style={reusable.innerContainer}>
               <Text style={reusable.headerText}>Welcome back, Boo Boo!</Text>
               <View style={{marginVertical: padding.xl, width: '100%'}}>
-                <InputText autoCapitalize="none" textContentType="username" name="username" value={username} handleTextChange={this.handleTextChange} placeholder="Username" />
-                <InputText textContentType="password" secureTextEntry name="password" value={password} handleTextChange={this.handleTextChange} placeholder="Password" />
+                <InputText icon="user-check" autoCapitalize="none" textContentType="username" name="username" value={username} handleTextChange={this.handleTextChange} placeholder="Username" />
+                <InputText icon="unlock" textContentType="password" secureTextEntry name="password" value={password} handleTextChange={this.handleTextChange} placeholder="Password" />
                 <View style={{position: 'absolute', bottom: -30, right: 0,}}>
                   {!!error && <Text style={{paddingVertical: 5, color: '#ff5925', fontWeight: '500'}}>{error}</Text>}
                 </View>

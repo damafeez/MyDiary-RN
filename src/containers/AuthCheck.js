@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import {connect} from 'react-redux';
 import {
   View,
-  Text,
-  StyleSheet
+  ActivityIndicator,
 } from "react-native";
+import { colors, reusable } from "../styles/base";
 
 class CheckAuth extends Component {
   componentDidMount() {
@@ -21,8 +21,9 @@ class CheckAuth extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Authenticating...</Text>
+      <View
+        style={[reusable.container, {justifyContent: 'center', alignItems: 'center'}]}>
+        <ActivityIndicator size="small" color={colors.primary} />
       </View>
     );
   }
@@ -33,12 +34,4 @@ const mapStateToProps = (state) => ({
   authCheckComplete: state.auth.authCheckComplete,
 });
 
-export default connect(mapStateToProps, null)(CheckAuth);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
+export default connect(mapStateToProps)(CheckAuth);

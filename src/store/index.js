@@ -15,7 +15,7 @@ const store = createStore(
 );
 
 AsyncStorage.getItem('user').then((user) => {
-  let parsedUser = JSON.parse(user);
+  const parsedUser = JSON.parse(user);
   if (parsedUser) {
     store.dispatch({type: types.SET_USER, payload: parsedUser});
     API.UPDATE_TOKEN(parsedUser.token);

@@ -12,7 +12,7 @@ export default class App extends Component {
           <StatusBar
             barStyle="dark-content"
           />
-          <AppContainer persistenceKey="NavigationState" />
+          <AppContainer />
         </View>
       </Provider>
     );

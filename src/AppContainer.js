@@ -9,10 +9,10 @@ import CheckAuth from './containers/AuthCheck';
 import Intro from './screens/Intro';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
-import Home from './screens/Home';
 import Header from './components/Header';
+import HomeNavigator from './screens/Home/Navigator';
 
-const AppStack = createStackNavigator({Home},
+const AppStack = createStackNavigator({Home: HomeNavigator},
   {
     defaultNavigationOptions: {
       header: null

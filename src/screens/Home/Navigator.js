@@ -13,6 +13,7 @@ const TabNavigator = createBottomTabNavigator({
   Profile,
 },
 {
+  lazy: false,
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {
       const { routeName } = navigation.state;

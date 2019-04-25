@@ -1,5 +1,6 @@
 import React, { Component , Fragment} from "react";
 import {connect} from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 class ProtectScreen extends Component {
   componentDidMount() {
@@ -29,4 +30,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps)(ProtectScreen);
+export default connect(mapStateToProps)(withNavigation(ProtectScreen));

@@ -6,8 +6,8 @@ import {
 } from "react-native";
 import ProtectScreen from '../../hoc/ProtectScreen';
 
-const Entries = (props) => (
-  <ProtectScreen  type="redirectOnNoToken" {...props}>
+const Entries = () => (
+  <ProtectScreen  type="redirectOnNoToken">
     <View style={styles.container}>
       <Text>Entries</Text>
     </View>

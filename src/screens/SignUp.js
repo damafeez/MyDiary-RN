@@ -3,7 +3,7 @@ import SignUpContainer from '../containers/SignUp';
 import ProtectScreen from '../hoc/ProtectScreen';
 
 export default (props) => (
-  <ProtectScreen type="redirectOnToken" {...props}>
+  <ProtectScreen type="redirectOnToken">
     <SignUpContainer {...props} />
   </ProtectScreen>
 );

@@ -10,7 +10,7 @@ import {signout} from '../../store/actions/auth';
 import ProtectScreen from '../../hoc/ProtectScreen';
 
 const Profile = (props) => (
-  <ProtectScreen type="redirectOnNoToken" {...props}>
+  <ProtectScreen type="redirectOnNoToken">
     <View style={styles.container}>
       <Text>Profile</Text>
       <TouchableOpacity onPress={props.signout}>

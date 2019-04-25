@@ -15,7 +15,7 @@ class Intro extends Component {
   };
   render() {
     return (
-      <ProtectScreen type="redirectOnToken" {...this.props}>
+      <ProtectScreen type="redirectOnToken">
         <View style={[reusable.container, {padding: padding.md}]}>
           <SafeAreaView style={{flex: 1}}> 
             <View style={reusable.innerContainer}>

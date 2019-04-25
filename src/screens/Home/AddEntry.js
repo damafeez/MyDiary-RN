@@ -9,8 +9,8 @@ import {
 import ProtectScreen from '../../hoc/ProtectScreen';
 import { reusable, padding, colors } from "../../styles/base";
 
-const AddEntry = (props) => (
-  <ProtectScreen  type="redirectOnNoToken" {...props}>
+const AddEntry = () => (
+  <ProtectScreen  type="redirectOnNoToken">
     <View style={reusable.container}>
       <StatusBar
         barStyle="light-content"

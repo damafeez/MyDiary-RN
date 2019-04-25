@@ -3,7 +3,7 @@ import LoginContainer from '../containers/Login';
 import ProtectScreen from '../hoc/ProtectScreen';
 
 export default (props) => (
-  <ProtectScreen type="redirectOnToken" {...props}>
+  <ProtectScreen type="redirectOnToken">
     <LoginContainer {...props} />
   </ProtectScreen>
 );

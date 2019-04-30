@@ -5,8 +5,11 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
+import { connect } from 'react-redux';
 import ProtectScreen from '../../hoc/ProtectScreen';
+import { createEntry } from '../../store/actions/entries';
 import { reusable, padding, colors } from "../../styles/base";
+import eventEmitter from '../../services/eventEmitter';
 
 class AddEntry extends Component {
   constructor(props) {
@@ -16,7 +19,48 @@ class AddEntry extends Component {
       body: '',
     }
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.componentDidFocus = this.componentDidFocus.bind(this);
+    this.componentWillBlur = this.componentWillBlur.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.truncate = this.truncate.bind(this);
+  }
+
+  componentDidMount() {
+    // register react-navigation events
+    this.subs = [
+      this.props.navigation.addListener('didFocus', this.componentDidFocus),
+      this.props.navigation.addListener('willBlur', this.componentWillBlur),
+    ];
+  }
+  // custom react-navigation events
+  componentDidFocus() {
+    eventEmitter.on('Create Entry', () => {
+      this.handleSubmit();
+    });
+  }
+  componentWillBlur() {
+    eventEmitter.removeAllListeners('Create Entry');
+
+  }
+  // 
+  componentWillUnmount() {
+    // unregister react-navigation events
+    this.subs.forEach(sub => sub.remove())
+  }
+
+  static navigationOptions() {
+    return {
+      tabBarOnPress({defaultHandler}) {
+        eventEmitter.emit('Create Entry');
+        defaultHandler()
+      },
+    };
+  }
+  async handleSubmit() {
+    const {_createEntry} = this.props;
+    const {title, body} = this.state;
+    const response = await _createEntry({title, body});
+    console.warn(response);
   }
   handleTextChange(key, value) {
     this.setState({[key]: value});
@@ -96,4 +140,4 @@ class AddEntry extends Component {
     );
   }
 }
-export default AddEntry;
+export default connect(null, {_createEntry: createEntry})(AddEntry);

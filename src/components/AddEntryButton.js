@@ -4,7 +4,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import {reusable, colors} from "../styles/base";
 
 const AddEntryButton = ({focused}) => (
-  <View activeOpacity={0.9} style={[reusable.button, {width: 45, height: 45, backgroundColor: focused ? '#43A047' : colors.primary}]}>
+  <View activeOpacity={0.9} style={[reusable.button, {width: 45, height: 45, backgroundColor: focused ? '#43A047' : colors.primary, shadowColor: 'white'}]}>
     <Feather style={{fontSize: 17}} name={focused ? 'check' : 'plus'} color="white" />
   </View>
 );

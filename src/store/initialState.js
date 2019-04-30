@@ -5,5 +5,12 @@ export default {
     loginLoading: false,
     authCheckComplete: false,
   },
+  entries: {
+    createEntryLoading: false,
+    getEntriesLoading: false,
+    entries: [],
+    entry: {},
+    currentEntry: 0,
+  },
   ui: {}
 };

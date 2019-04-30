@@ -1,15 +1,15 @@
 import React from "react";
-import {createBottomTabNavigator} from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import AddEntryButton from '../../components/AddEntryButton';
 import Entries from './Entries';
-import AddEntry from './AddEntry';
+import SingleEntry from './SingleEntry';
 import Profile from './Profile';
-import {colors} from "../../styles/base";
+import { colors } from "../../styles/base";
 
 const TabNavigator = createBottomTabNavigator({
   Entries,
-  AddEntry,
+  SingleEntry,
   Profile,
 },
 {
@@ -25,7 +25,7 @@ const TabNavigator = createBottomTabNavigator({
         case 'Profile':
           iconName = 'user'
           break;
-        case 'AddEntry':
+        case 'SingleEntry':
           return <AddEntryButton focused={focused} />
         default:
           break;
@@ -39,4 +39,5 @@ const TabNavigator = createBottomTabNavigator({
     showLabel: false,
   },
 });
+
 export default TabNavigator;

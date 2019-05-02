@@ -1,12 +1,44 @@
 import React from "react";
-import {View} from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {reusable, colors} from "../styles/base";
+import { connect } from 'react-redux';
+import {colors} from "../styles/base";
 
-const AddEntryButton = ({focused}) => (
-  <View activeOpacity={0.9} style={[reusable.button, {width: 45, height: 45, backgroundColor: focused ? '#43A047' : colors.primary, shadowColor: 'white'}]}>
-    <Feather style={{fontSize: 17}} name={focused ? 'check' : 'plus'} color="white" />
+const AddEntryButton = ({focused, loading}) => (
+  <View activeOpacity={0.9} style={[
+    styles.button,
+    !loading && focused && styles.buttonFocused,
+  ]}>
+    {
+      (() => {
+        if(loading) return <ActivityIndicator size="small" color="white" />
+        else return <Feather style={{fontSize: 17}} name={focused ? 'check' : 'plus'} color="white" />
+      })()
+    }
   </View>
 );
 
-export default AddEntryButton;
+const styles = StyleSheet.create({
+  button: {
+    width: 45,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    backgroundColor: colors.secondary,
+    shadowOffset: { width: 3, height: 3 },
+    shadowColor: 'rgba(0, 0, 0, 0.8)',
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
+    elevation: 3,
+  },
+  buttonFocused: {
+    backgroundColor: colors.primary,
+  }
+});
+
+const mapStateToProps = (state) => ({
+  loading: state.entries.createEntryLoading,
+});
+
+export default connect(mapStateToProps)(AddEntryButton);

@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { reusable, padding, colors } from "../../styles/base";
 
-const Entry = ({ title, body, trimInput, handleTextChange, mode }) => (
+const Entry = ({ title, body, trimInput, handleTextChange }) => (
   <View style={reusable.container}>
     <ScrollView
       keyboardShouldPersistTaps='handled'>
@@ -28,9 +28,9 @@ const Entry = ({ title, body, trimInput, handleTextChange, mode }) => (
           
         }}>
           <TextInput 
-            onBlur={() => trimInput('title', mode)}
+            onBlur={() => trimInput('title')}
             value={title}
-            onChangeText={(value) => handleTextChange('title', value, mode)}
+            onChangeText={(value) => handleTextChange('title', value)}
             multiline
             placeholder="Enter title here"
             placeholderTextColor="lightgray"
@@ -53,9 +53,9 @@ const Entry = ({ title, body, trimInput, handleTextChange, mode }) => (
         flex: 1,
       }}>
         <TextInput 
-          onBlur={() => trimInput('body', mode)}
+          onBlur={() => trimInput('body')}
           value={body}
-          onChangeText={(value) => handleTextChange('body', value, mode)}
+          onChangeText={(value) => handleTextChange('body', value)}
           multiline
           placeholder="What's on your mind?"
           placeholderTextColor="gray"

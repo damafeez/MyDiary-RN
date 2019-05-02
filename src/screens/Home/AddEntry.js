@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProtectScreen from '../../hoc/ProtectScreen';
-import SingleEntryContainer from '../../containers/SingleEntry';
+import AddEntry from '../../containers/AddEntry';
 import eventEmitter from '../../services/eventEmitter';
 
 class SingleEntry extends Component {
@@ -15,7 +15,7 @@ class SingleEntry extends Component {
   render() {
     return (
       <ProtectScreen  type="redirectOnNoToken">
-        <SingleEntryContainer {...this.props}/>
+        <AddEntry {...this.props}/>
       </ProtectScreen>
     );
   }

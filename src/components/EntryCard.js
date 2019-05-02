@@ -14,8 +14,8 @@ const truncate = (string, length) => {
   return _string.length <= truncated.length ? _string : truncated;
 }
 
-const EntryCard = ({ active, title, body, created, index, handleEntryClick }) => (
-  <TouchableOpacity onPress={() => handleEntryClick(index)} activeOpacity={1} style={[styles.card, active && styles.active]}>
+const EntryCard = ({ active, title, body, created, id, handleEntryClick }) => (
+  <TouchableOpacity onPress={() => handleEntryClick(id)} activeOpacity={1} style={[styles.card, active && styles.active]}>
     <View style={{
       flexDirection: 'row',
       marginBottom: padding.sm,

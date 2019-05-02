@@ -14,6 +14,23 @@ export default (state = {}, {type, payload}) => {
         createEntryLoading: false,
         currentEntry: 0,
       };
+    case types.GET_ENTRIES_LOADING:
+      return {
+        ...state,
+        getEntriesLoading: payload,
+      };
+    case types.GET_ENTRIES_SUCCESS:
+      return {
+        ...state,
+        entries: payload,
+        getEntriesLoading: false,
+        getEntriesError: '',
+      };
+    case types.GET_ENTRIES_ERROR:
+      return {
+        ...state,
+        getEntriesError: payload,
+      };
     
     default:
       return state;

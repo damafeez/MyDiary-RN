@@ -6,7 +6,6 @@ import Entries from './Entries';
 import SingleEntry from './SingleEntry';
 import Profile from './Profile';
 import { colors } from "../../styles/base";
-
 const TabNavigator = createBottomTabNavigator({
   Entries,
   SingleEntry,
@@ -37,6 +36,20 @@ const TabNavigator = createBottomTabNavigator({
     activeTintColor: colors.primary,
     inactiveTintColor: colors.tertiary,
     showLabel: false,
+    style: {
+      backgroundColor: 'white',
+      borderTopWidth: 0,
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      shadowOffset: { width: 5, height: -5 },
+      shadowColor: 'rgba(0, 0, 0, 0.8)',
+      shadowOpacity: 0.1,
+      shadowRadius: 10,
+    }
   },
 });
 

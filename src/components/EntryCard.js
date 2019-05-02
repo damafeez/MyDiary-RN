@@ -1,60 +1,71 @@
 import React from "react";
-import { 
+import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import Feather from "react-native-vector-icons/Feather";
+import moment from 'moment';
 import { padding, colors } from "../styles/base";
 
-const EntryCard = ({liked}) => (
-  <View style={[styles.card, liked && styles.liked]}>
+const truncate = (string, length) => {
+  const _string = string.replace(/\n/g, " ");
+  const truncated = `${_string.substring(0, length).trim()}...`;
+  return _string.length <= truncated.length ? _string : truncated;
+}
+
+const EntryCard = ({ active, title, body, created, index, handleEntryClick }) => (
+  <TouchableOpacity onPress={() => handleEntryClick(index)} activeOpacity={1} style={[styles.card, active && styles.active]}>
     <View style={{
       flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: padding.sm
+      marginBottom: padding.sm,
+      alignItems: 'flex-start',
     }}>
-      <TouchableOpacity>
-        <Feather style={[{color: colors.secondary}, liked && styles.likedIcon]} name="heart" />
-      </TouchableOpacity>
-      <Text style={{
-        flex: 1,
-        fontWeight: '600',
-        fontSize: 17,
-        color: colors.secondary,
-        marginHorizontal: padding.sm,
-      }}>This is the header you want...</Text>
-      <Text style={{
+      <Text style={[
+        {
+          flex: 1,
+          fontWeight: '600',
+          fontSize: 17,
+          color: 'rgba(0, 0, 0, 0.8)',
+        },
+        active && { fontSize: 18, marginBottom: padding.md }
+      ]}>{active ? title : truncate(title, 30)}</Text>
+      {!!active &&
+        <TouchableOpacity
+          onPress={() => handleEntryClick()}
+          style={{padding: padding.sm}}>
+          <View style={{width: 7, height: 7, backgroundColor: '#ff5925', borderRadius: 5,}} />
+        </TouchableOpacity>}
+      {!active && <Text style={{
         fontSize: 15,
         color: colors.secondary,
-      }}>22 FEB</Text>
+      }}>{moment(created).date()} {moment(created).format('MMM').toUpperCase()}</Text>}
     </View>
-    <Text style={{
-      color: '#95999D',
-    }}>This is the word I told you I would type when your mum gets home the last time I was awake....</Text>
-  </View>
+    <Text style={[
+      {
+        color: 'gray',
+      },
+      active && { fontSize: 15, lineHeight: 20 }]}
+    >
+      {active ? body : truncate(body, 95)}
+    </Text>
+  </TouchableOpacity>
 );
-export default EntryCard;
 const styles = StyleSheet.create({
   card: {
     padding: padding.sm,
     marginBottom: padding.sm,
-    borderRadius: 5,
   },
-  likedIcon: {
-    shadowOffset: {width: 5, height: 5},
-    shadowRadius: 15,
-    shadowOpacity: 0.6,
-    shadowColor: '#ff5925',
-    color: '#ff5925',
-  },
-  liked: {
+  active: {
     backgroundColor: 'white',
-    shadowOffset: { width: 3, height: 3 },
-    shadowColor: '#50555ac2',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
+    padding: padding.md,
+    borderRadius: 5,
+    shadowOffset: { width: 2, height: 2 },
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowOpacity: 0.2,
+    shadowRadius: 15,
     elevation: 3,
   }
-})
+});
+
+export default EntryCard;

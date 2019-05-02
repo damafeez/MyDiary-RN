@@ -8,6 +8,7 @@ export default {
   entries: {
     createEntryLoading: false,
     getEntriesLoading: false,
+    getEntriesError: '',
     entries: [],
     entry: {},
     currentEntry: 0,

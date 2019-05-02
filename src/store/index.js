@@ -22,5 +22,11 @@ AsyncStorage.getItem('user').then((user) => {
   }
   store.dispatch({type: types.AUTHCHECK_COMPLETE});
 });
+AsyncStorage.getItem('entries').then((entries) => {
+  const parsedEntries = JSON.parse(entries);
+  if (parsedEntries) {
+    store.dispatch({type: types.GET_ENTRIES_SUCCESS, payload: parsedEntries});
+  }
+});
 
 export default store;

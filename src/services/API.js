@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseURL = 'https://api-mydiary.herokuapp.com/api/v1';
+
 export default class API {
   constructor(token) {
     this.UPDATE_TOKEN(token);
@@ -23,8 +24,12 @@ export default class API {
   login(payload) {
     return this.unauthorized.post('/auth/login', payload);
   }
-  
+
   createEntry(payload) {
     return this.api.post('/entries', payload);
+  }
+
+  getEntries() {
+    return this.api.get('/entries');
   }
 }

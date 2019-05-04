@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import initialState from '../initialState';
 
 export default (state = {}, {type, payload}) => {
   switch (type) {
@@ -31,7 +32,14 @@ export default (state = {}, {type, payload}) => {
         ...state,
         getEntriesError: payload,
       };
-    
+    case types.READ_ENTRY:
+      return {
+        ...state,
+        currentEntry: payload,
+      };
+    case types.SIGN_OUT:
+      return initialState.entries;
+
     default:
       return state;
   }

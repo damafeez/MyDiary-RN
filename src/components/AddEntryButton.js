@@ -4,7 +4,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux';
 import {colors} from "../styles/base";
 
-const AddEntryButton = ({focused, loading}) => (
+const AddEntryButton = ({focused, loading, entry}) => (
   <View activeOpacity={0.9} style={[
     styles.button,
     !loading && focused && styles.buttonFocused,
@@ -12,7 +12,7 @@ const AddEntryButton = ({focused, loading}) => (
     {
       (() => {
         if(loading) return <ActivityIndicator size="small" color="white" />
-        else return <Feather style={{fontSize: 17}} name={focused ? 'check' : 'plus'} color="white" />
+        else return <Feather style={{fontSize: 17}} name={entry ? 'edit-2' : focused ? 'check' : 'plus'} color="white" />
       })()
     }
   </View>

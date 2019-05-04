@@ -34,3 +34,7 @@ export const getEntries = (payload) => async (dispatch, getState, API) => {
     return { error };
   }
 };
+
+export const readEntry = (payload = 0) => (dispatch) => {
+  dispatch({ type: types.READ_ENTRY, payload });
+};

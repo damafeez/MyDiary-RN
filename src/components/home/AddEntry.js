@@ -7,12 +7,15 @@ import {
 } from "react-native";
 import { reusable, padding, colors } from "../../styles/base";
 
-const Entry = ({ title, body, trimInput, handleTextChange }) => (
+const Entry = ({ title, body, trimInput, handleTextChange, mode }) => (
   <View style={reusable.container}>
     <ScrollView
+      showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps='handled'>
       <ImageBackground
-        source={require('../../assets/intro3.jpeg')}
+        source={mode === 'edit' ?
+          require('../../assets/intro2.jpeg')
+          : require('../../assets/intro3.jpeg')}
         style={{
           height: 150,
           tintColor: 'black'
@@ -57,16 +60,17 @@ const Entry = ({ title, body, trimInput, handleTextChange }) => (
           value={body}
           onChangeText={(value) => handleTextChange('body', value)}
           multiline
-          placeholder="What's on your mind?"
-          placeholderTextColor="gray"
+          placeholder="WHAT'S ON YOUR MIND?&#10;Tap check button at the bottom to save,&#10;Long press to cancel."
+          placeholderTextColor={colors.tertiary}
           selectionColor={colors.secondary}
           style={{
             color: colors.secondary,
             fontSize: 17,
             textAlign: 'justify',
-            paddingHorizontal: padding.md,
+            marginHorizontal: padding.md,
             paddingTop: padding.md,
             paddingBottom: padding.xl,
+            marginBottom: 220
           }} />
       </View>
     </ScrollView>

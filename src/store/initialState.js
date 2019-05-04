@@ -13,5 +13,7 @@ export default {
     entry: {},
     currentEntry: 0,
   },
-  ui: {}
+  ui: {
+    readModalActive: false,
+  }
 };

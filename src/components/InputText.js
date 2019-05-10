@@ -40,6 +40,7 @@ class InputText extends Component {
             style={{
               fontSize: 17,
               paddingBottom: 8,
+              paddingHorizontal: 0,
               paddingTop: 15,
               fontWeight: this.props.value ? '500' : '400',
               color: colors.primary,

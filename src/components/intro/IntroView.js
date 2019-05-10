@@ -20,7 +20,7 @@ class IntroSplash extends Component {
           }} source={this.props.image} />
         </View>
         <Text style={{fontSize: 22, marginVertical: 55, fontWeight: '500', color: colors.headerText}}>{this.props.title}</Text>
-        <Text style={{textAlign: "center", color: colors.secondary, fontSize: 15, lineHeight: 20}}>{this.props.description}</Text>
+        <Text style={{textAlign: "center", color: colors.secondary, fontSize: 16, lineHeight: 20}}>{this.props.description}</Text>
       </View>
     );
   }
@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     shadowColor: '#50555ac2',
     shadowOpacity: 0.7,
     shadowRadius: 20,
-    elevation: 3,},
+    elevation: 15,
+  },
 });

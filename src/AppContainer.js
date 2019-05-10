@@ -10,7 +10,7 @@ import Intro from './screens/Intro';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Header from './components/Header';
-import HomeNavigator from './screens/Home/Navigator';
+import HomeNavigator from './screens/Home/HomeContainer';
 
 const AppStack = createStackNavigator({Home: HomeNavigator},
   {

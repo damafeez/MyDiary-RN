@@ -8,10 +8,11 @@ import {
 import {connect} from 'react-redux';
 import {signout} from '../../store/actions/auth';
 import ProtectScreen from '../../hoc/ProtectScreen';
+import { reusable } from "../../styles/base";
 
 const Profile = (props) => (
   <ProtectScreen type="redirectOnNoToken">
-    <View style={styles.container}>
+    <View style={[reusable.container, styles.container]}>
       <Text>Profile</Text>
       <TouchableOpacity onPress={props.signout}>
         <Text style={{padding: 20, color: 'blue'}}>Sign Out</Text>
@@ -23,7 +24,6 @@ export default connect(null, {signout})(Profile);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   }

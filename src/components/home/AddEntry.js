@@ -69,7 +69,7 @@ const Entry = ({ title, body, trimInput, handleTextChange, mode }) => (
             textAlign: 'justify',
             marginHorizontal: padding.md,
             paddingTop: padding.md,
-            paddingBottom: padding.xl,
+            paddingBottom: padding.md,
             marginBottom: 220
           }} />
       </View>

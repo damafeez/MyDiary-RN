@@ -19,6 +19,20 @@ export const createEntry = (payload) => async (dispatch, getState, API) => {
   }
 };
 
+export const updateEntry = ({id, index, ...payload} = {}) => async (dispatch, getState, API) => {
+  try {
+    dispatch(entryCreateLoading());
+    const request = await API.updateEntry(id, payload);
+    const { data } = request.data;
+    dispatch({ type: types.ENTRY_UPDATE_SUCCESS, payload: { data, index } });
+    setTimeout(() => AsyncStorage.setItem('entries', JSON.stringify(getState().entries.entries)), 1000);
+    return { success: 'Entry updated successfully', data };
+  } catch (e) {
+    dispatch(entryCreateLoading(false));
+    const error = e.response.data.error ? e.response.data.error[0] : 'Error updating entry, please try again';
+    return { error };
+  }
+};
 export const getEntries = (payload) => async (dispatch, getState, API) => {
   try {
     dispatch(getEntriesLoading());

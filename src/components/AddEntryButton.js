@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0, 0, 0, 0.8)',
     shadowOpacity: 0.4,
     shadowRadius: 7,
-    elevation: 3,
+    elevation: 5,
   },
   buttonFocused: {
     backgroundColor: colors.primary,

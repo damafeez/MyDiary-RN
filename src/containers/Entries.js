@@ -3,7 +3,6 @@ import {
   View,
   Text,
   SafeAreaView,
-  TouchableOpacity,
   ActivityIndicator,
   FlatList,
 } from "react-native";
@@ -35,7 +34,7 @@ class Entries extends Component {
   // custom react-navigation events
   componentDidFocus() {
     const activeEntry = this.props.navigation.getParam('activeEntry', null);
-    if (activeEntry || activeEntry) this.setState({activeEntry})
+    if (activeEntry) this.setState({ activeEntry });
   }
   // 
   componentWillUnmount() {
@@ -55,9 +54,9 @@ class Entries extends Component {
         <SafeAreaView>
           <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: padding.md}}>
             <Text style={[reusable.headerText, {marginBottom: padding.sm}]}>Entries</Text>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Feather name="search" size={20} color={colors.primary} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={{paddingBottom: 120}}>
             <FlatList
@@ -86,7 +85,7 @@ class Entries extends Component {
                     fontSize: 25,
                     marginBottom: 30,
                   }} name="zap-off" />
-                  <Text style={{color: colors.tertiary, fontSize: 20, textAlign: "center"}}>{error ? error : 'You have not added any entries to your diary, please click the \'plus\' button to get started.'}</Text>
+                  <Text style={{color: colors.tertiary, fontSize: 20, textAlign: "center", paddingHorizontal: padding.md}}>{error ? error : 'You have not added any entries to your diary, please click the \'plus\' button to get started.'}</Text>
                 </Fragment>}
               </View>} />
           </View>

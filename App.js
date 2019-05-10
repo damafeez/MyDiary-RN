@@ -10,6 +10,7 @@ export default class App extends Component {
       <Provider store={store}>
         <View style={{flex: 1}}>
           <StatusBar
+            backgroundColor="rgba(0, 0, 0, 0.1)"
             barStyle="dark-content"
           />
           <AppContainer />

@@ -23,7 +23,7 @@ class Intro extends Component {
               <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('SignUp')} style={reusable.button}>
                   <Text style={{color: 'white', fontWeight: '600'}}>Create Account</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')} style={[reusable.button, {backgroundColor: 'transparent', borderColor: '#C4C4C4', borderWidth: 1}]}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')} style={[reusable.button, {backgroundColor: 'rgba(0, 0, 0, 0)', borderColor: '#C4C4C4', borderWidth: 1.2, elevation: 0}]}>
                   <Text style={{color: colors.secondary, fontWeight: '600'}}>Login</Text>
               </TouchableOpacity>
             </View>

@@ -39,7 +39,7 @@ export const reusable = {
     shadowColor: '#50555ac2',
     shadowOpacity: 0.4,
     shadowRadius: 7,
-    elevation: 3,
+    elevation: 5,
     marginVertical: 10
   },
   disabledButton: {

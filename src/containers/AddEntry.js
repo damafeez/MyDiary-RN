@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import eventEmitter from '../services/eventEmitter';
-import { createEntry } from '../store/actions/entries';
+import { createEntry, updateEntry } from '../store/actions/entries';
 import { activateReadModal } from '../store/actions/ui';
 import AddEntry from '../components/home/AddEntry';
 
@@ -11,7 +11,8 @@ class SingleEntry extends Component {
     this.state = {
       title: '',
       body: '',
-      mode: 'create'
+      mode: 'create',
+      index: null,
     }
     this.handleTextChange = this.handleTextChange.bind(this);
     this.componentDidFocus = this.componentDidFocus.bind(this);
@@ -29,15 +30,27 @@ class SingleEntry extends Component {
   }
   // custom react-navigation events
   componentDidFocus() {
-    const mode = this.props.navigation.getParam('mode', 'create');
-    this.setState({
-      mode,
-    });
+    const { index, navigation } = this.props;
+    const { index: stateIndex, mode: stateMode } = this.state;
+    const mode = navigation.getParam('mode', 'create');
+
+    if (index !== stateIndex || mode !== stateMode) {
+      this.setState({
+        mode,
+        index,
+      });
+      setTimeout(() => {
+        this.reset(false);
+      }, 100);
+    }
     eventEmitter.on('Action Button Clicked', () => {
       this.handleActionButtonClick();
     });
     eventEmitter.on('Action Button Long Clicked', () => {
-      this.reset(this.state.mode === 'edit');
+      const { _activateReadModal } = this.props;
+      const editMode = this.state.mode === 'edit';
+      this.reset(editMode);
+      editMode && _activateReadModal();
     });
   }
   componentWillBlur() {
@@ -49,24 +62,29 @@ class SingleEntry extends Component {
     // unregister react-navigation events
     this.subs.forEach(sub => sub.remove());
   }
-  componentDidUpdate(prevProps, prevState) {
-    const { mode } = this.state;
-    if (prevState.mode !== mode) {
-      this.reset(false);
-    }
-  }
-
   async handleActionButtonClick() {
-    const { _createEntry, loading } = this.props;
+    const { _createEntry,
+      _updateEntry,
+      _activateReadModal,
+      loading,
+      index,
+      entries,
+    } = this.props;
     const { title, body, mode } = this.state;
-    if (loading || !title || !body) return;
+    const { id } = entries[index] || {};
+
+    if (loading) return;
+    let response = {};
     if (mode === 'create') {
-      const response = await _createEntry({title, body});
-      if (response.success) {
-        return this.reset();
-      }
-      alert(response.error);
+      response = await _createEntry({ title, body });
+    } else if (mode === 'edit') {
+      response = await _updateEntry({ index, id, title, body });
     }
+    if (response.success) {
+      this.reset();
+      return _activateReadModal()
+    }
+    alert(response.error);
   }
   handleTextChange(key, value) {
     this.setState({[key]: value});
@@ -76,7 +94,7 @@ class SingleEntry extends Component {
   }
   reset(clear = true) {
     const { mode } = this.state;
-    const { entries, index, navigation, _activateReadModal } = this.props;
+    const { entries, index, navigation, } = this.props;
     const { title, body } = entries[index] || {};
     const shouldEmpty = clear || mode !== 'edit';
     this.setState({
@@ -84,8 +102,10 @@ class SingleEntry extends Component {
       body: shouldEmpty ? '' : body,      
     });
     if (clear){
+      this.setState({
+        index: null,  
+      });
       navigation.navigate('Entries');
-      mode === 'edit' && _activateReadModal();
     }
   }
   render() {
@@ -108,5 +128,6 @@ const mapStateToProps = (state) => ({
 });
 export default connect(mapStateToProps, {
   _createEntry: createEntry,
+  _updateEntry: updateEntry,
   _activateReadModal: activateReadModal,
 })(SingleEntry);

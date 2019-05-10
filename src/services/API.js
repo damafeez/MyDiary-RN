@@ -32,4 +32,8 @@ export default class API {
   getEntries() {
     return this.api.get('/entries');
   }
+  
+  updateEntry(id, payload) {
+    return this.api.put(`/entries/${id}`, payload);
+  }
 }

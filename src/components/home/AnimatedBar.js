@@ -7,7 +7,9 @@ import {
   Animated,
   Easing,
   StyleSheet,
-  Dimensions
+  ScrollView,
+  Dimensions,
+  BackHandler,
 } from "react-native";
 import Feather from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux';
@@ -24,7 +26,11 @@ class Entries extends Component {
     super(props);
 
     this.handleAddButtonPress = this.handleAddButtonPress.bind(this);
+    this.handleBackButtonAndroid = this.handleBackButtonAndroid.bind(this);
     this.yTranslate = new Animated.Value(0);
+  }
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonAndroid);
   }
   componentDidUpdate(prevProps) {
     const { active } = this.props;
@@ -34,17 +40,20 @@ class Entries extends Component {
         this.yTranslate.setValue(0); // reset the animated value
         Animated.spring(this.yTranslate, {
           toValue: 1,
-          friction: 6 
+          friction: 5,
         }).start();
       } else {
         // animate the hiding of the modal
         Animated.timing(this.yTranslate, {
           toValue: 0,
-          duration: 200,
+          duration: 250,
           easing: Easing.linear
         }).start();
       }
     }
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress');
   }
   handleAddButtonPress() {
     const { navigation, active, _activateReadModal } = this.props;
@@ -54,6 +63,13 @@ class Entries extends Component {
   }
   handleAddButtonLongPress() {
     eventEmitter.emit('Action Button Long Clicked');
+  }
+  handleBackButtonAndroid() {
+    const { active, _activateReadModal } = this.props;
+    if (active) {
+      _activateReadModal(false);
+      return true;
+    }
   }
   render() {
     const {
@@ -67,9 +83,9 @@ class Entries extends Component {
     const { title, body } = entries[index] || {};
     const {height: SCREEN_HEIGHT} = Dimensions.get('window');
     const fullHeight = SCREEN_HEIGHT - 40;
-    const cardHeight = this.yTranslate.interpolate({
+    const modalMoveY = this.yTranslate.interpolate({
       inputRange: [0, 0.5, 1],
-      outputRange: [tabBarHeight, 500, fullHeight]
+      outputRange: [fullHeight - tabBarHeight, 500, 0]
     });
     const textOpacity = this.yTranslate.interpolate({
       inputRange: [0, 0.5, 1],
@@ -85,48 +101,55 @@ class Entries extends Component {
     });
 
     const cardStyle = { ...styles.card,
-      height: cardHeight,
+      height: fullHeight,
+      transform: [{translateY: modalMoveY}]
     };
     return (
       <View>
         <Animated.View style={cardStyle}>
           {title && body && 
-            (<Animated.View style={{
-              paddingTop: padding.md,
-              paddingHorizontal: 15,
-              opacity: textOpacity
-            }}>
-              <View style={{
-                flexDirection: 'row',
-                marginBottom: padding.sm,
-                alignItems: 'flex-start',
+            (
+              <Animated.View style={{
+                paddingTop: padding.md,
+                paddingHorizontal: 15,
+                opacity: textOpacity
               }}>
-                <Text style={[
-                  {
-                    flex: 1,
-                    fontWeight: '600',
-                    fontSize: 22,
-                    color: 'rgba(0, 0, 0, 0.8)',
-                    marginBottom: padding.md
-                  }
-                ]}>{title}</Text>
-                <TouchableOpacity
-                  onPress={() => this.props._activateReadModal(false)}
-                  style={{padding: padding.md, paddingTop: padding.sm, marginRight: -15}}>
-                  <View style={{width: 7, height: 7, backgroundColor: '#ff5925', borderRadius: 5,}} />
-                </TouchableOpacity>
-              </View>
-              <Text style={[
-                {
-                  color: 'gray',
-                  fontSize: 17,
-                  lineHeight: 20,
-                  textAlign: "justify",
-                }
-              ]}
-              >{body}
-              </Text>
-            </Animated.View>)
+                <View style={{
+                  flexDirection: 'row',
+                  marginBottom: padding.sm,
+                  marginRight: -15,
+                  alignItems: 'flex-start',
+                }}>
+                  <Text style={[
+                    {
+                      flex: 1,
+                      fontWeight: '600',
+                      fontSize: 22,
+                      color: 'rgba(0, 0, 0, 0.8)',
+                      marginBottom: padding.md
+                    }
+                  ]}>{title}</Text>
+                  <TouchableOpacity
+                    onPress={() => this.props._activateReadModal(false)}
+                    style={{padding: padding.md, paddingTop: padding.sm,}}>
+                    <View style={{width: 7, height: 7, backgroundColor: '#ff5925', borderRadius: 5,}} />
+                  </TouchableOpacity>
+                </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  <Text style={[
+                    {
+                      color: 'gray',
+                      fontSize: 17,
+                      lineHeight: 20,
+                      textAlign: "justify",
+                      marginBottom: 200,
+                    }
+                  ]}
+                  >{body}
+                  </Text>
+                </ScrollView>
+              </Animated.View>
+            )
           }
         </Animated.View>
         <SafeAreaView style={{
@@ -135,6 +158,11 @@ class Entries extends Component {
           left: 0,
           right: 0,
           zIndex: 15,
+          elevation: 150,
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          height: tabBarHeight,
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
         }}>
           <View style={{
             flexDirection: 'row',
@@ -194,6 +222,7 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0, 0, 0, 0.8)',
     shadowOpacity: 0.1,
     shadowRadius: 10,
+    elevation: 20,
     zIndex: 10,
   }
 });

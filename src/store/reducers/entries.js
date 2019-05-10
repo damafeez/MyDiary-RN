@@ -15,6 +15,16 @@ export default (state = {}, {type, payload}) => {
         createEntryLoading: false,
         currentEntry: 0,
       };
+    case types.ENTRY_UPDATE_SUCCESS: {
+      const entries = Object.assign(state.entries);
+      entries[payload.index] = payload.data;
+      return {
+        ...state,
+        entries: [...entries],
+        createEntryLoading: false,
+        currentEntry: payload.index,
+      };
+    }
     case types.GET_ENTRIES_LOADING:
       return {
         ...state,

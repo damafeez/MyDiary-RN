@@ -25,6 +25,15 @@ export default (state = {}, {type, payload}) => {
         currentEntry: payload.index,
       };
     }
+    case types.ENTRY_DELETE: {
+      const entries = Object.assign(state.entries);
+      entries.splice(payload, 1);
+      return {
+        ...state,
+        entries: [...entries],
+        currentEntry: null,
+      };
+    }
     case types.GET_ENTRIES_LOADING:
       return {
         ...state,

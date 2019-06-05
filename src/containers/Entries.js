@@ -13,7 +13,7 @@ import Swipeout from 'react-native-swipeout';
 import EntryCard from '../components/EntryCard';
 import SwipeButtons from '../components/SwipeButtons';
 import { reusable, padding, colors } from "../styles/base";
-import { getEntries, setCurrentEntry } from '../store/actions/entries';
+import { getEntries, setCurrentEntry, deleteEntry } from '../store/actions/entries';
 import { activateReadModal } from '../store/actions/ui';
 import { truncate } from '../utils';
 import eventEmitter from '../services/eventEmitter';
@@ -70,13 +70,10 @@ class Entries extends Component {
         {
           text: 'Delete',
           style: 'destructive',
-          onPress: () => this.handleEntryDelete(id, index),
+          onPress: () => this.props._deleteEntry(id, index),
         },
       ],
     );
-  }
-  handleEntryDelete = (id, index) => {
-
   }
   allowScroll = (notSwiping) => {
     this.setState({ scrollEnabled: notSwiping });
@@ -167,4 +164,5 @@ export default connect(mapStateToProps, {
   _getEntries: getEntries,
   _activateReadModal: activateReadModal,
   _setCurrentEntry: setCurrentEntry,
+  _deleteEntry: deleteEntry,
 })(Entries);

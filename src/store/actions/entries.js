@@ -49,6 +49,6 @@ export const getEntries = (payload) => async (dispatch, getState, API) => {
   }
 };
 
-export const readEntry = (payload = 0) => (dispatch) => {
-  dispatch({ type: types.READ_ENTRY, payload });
+export const setCurrentEntry = (payload = 0) => (dispatch) => {
+  dispatch({ type: types.SET_CURRENT_ENTRY, payload });
 };

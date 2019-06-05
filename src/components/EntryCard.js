@@ -7,12 +7,7 @@ import {
 } from "react-native";
 import moment from 'moment';
 import { padding, colors } from "../styles/base";
-
-const truncate = (string, length) => {
-  const _string = string.replace(/\n/g, " ");
-  const truncated = `${_string.substring(0, length).trim()}...`;
-  return _string.length <= truncated.length ? _string : truncated;
-}
+import { truncate } from '../utils';
 
 const EntryCard = ({ title, body, created, handleEntryClick }) => (
   <TouchableOpacity onPress={handleEntryClick} activeOpacity={1} style={styles.card}>
@@ -45,7 +40,7 @@ const EntryCard = ({ title, body, created, handleEntryClick }) => (
 const styles = StyleSheet.create({
   card: {
     padding: padding.sm,
-    marginHorizontal: padding.md,
+    marginLeft: padding.md,
     marginBottom: padding.sm,
   },
 });

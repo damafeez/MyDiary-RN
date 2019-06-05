@@ -33,6 +33,7 @@ class SingleEntry extends Component {
     const { index, navigation } = this.props;
     const { index: stateIndex, mode: stateMode } = this.state;
     const mode = navigation.getParam('mode', 'create');
+    this.showReadModal = navigation.getParam('showReadModal', true);
 
     if (index !== stateIndex || mode !== stateMode) {
       this.setState({
@@ -50,7 +51,7 @@ class SingleEntry extends Component {
       const { _activateReadModal } = this.props;
       const editMode = this.state.mode === 'edit';
       this.reset(editMode);
-      editMode && _activateReadModal();
+      editMode && this.showReadModal && _activateReadModal();
     });
   }
   componentWillBlur() {
@@ -82,7 +83,7 @@ class SingleEntry extends Component {
     }
     if (response.success) {
       this.reset();
-      return _activateReadModal()
+      return this.showReadModal && _activateReadModal()
     }
     alert(response.error);
   }

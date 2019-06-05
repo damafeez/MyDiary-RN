@@ -42,7 +42,7 @@ export default (state = {}, {type, payload}) => {
         ...state,
         getEntriesError: payload,
       };
-    case types.READ_ENTRY:
+    case types.SET_CURRENT_ENTRY:
       return {
         ...state,
         currentEntry: payload,
